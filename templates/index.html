@@ -1,0 +1,18 @@
+{% load mptt_tags %}
+
+{% full_tree_for_model homepage.File as files %}
+<ul class="root">
+    {% recursetree files %}
+        <li>
+            {{ node.name }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+
+<!-- https://django-mptt.readthedocs.io/en/latest/templates.html#recursetree -->
+<!-- used this as a reference -->
